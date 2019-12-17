@@ -14,8 +14,17 @@ Most kawaii and simplest database abstraction layer ever
   * Allows inheritance to modify any model as desired and the methods of working with it do not limit itself at all
   * It does not provide any requirements and tools for filtering data. You can use whatever you want
   * Works equally well on PHP5 and PHP7. Legacy!
+  * Acceptable for use in web or CLI applications.
   * The most obvious syntax and mechanics that require a minimum level of IQ for their understanding
   * High level of kawaii
+
+# Few Usage examples
+
+Creating model for database table devices with some magic:
+
+```
+$devices=new nya_devices();
+```
 
 ## Please check out some usage guidelines
 
