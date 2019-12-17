@@ -17,7 +17,7 @@ Most kawaii and simplest database abstraction layer ever
   * The most obvious syntax and mechanics that require a minimum level of IQ for their understanding
   * High level of kawaii
 
-Please check out some usage guidelines
+## Please check out some usage guidelines
 
   * [Documentation](http://wiki.ubilling.net.ua/doku.php?id=nyanorm)
 
