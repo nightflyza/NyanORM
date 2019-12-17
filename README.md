@@ -20,11 +20,42 @@ Most kawaii and simplest database abstraction layer ever
 
 # Few Usage examples
 
-Creating model for database table devices with some magic:
-
+Creating model for database table "devices" with some kind of magic:
 ```
 $devices=new nya_devices();
 ```
+
+Retrieving all data from it:
+```
+$allDevices=$devices->getAll();
+```
+
+Filtering data before selecting data:
+```
+$devices->where('id','=','42');
+```
+
+Creating new device
+```
+$devices->data('name','device name');
+$devices->data('price','50');
+$devices->create();
+```
+
+Changing some device record:
+```
+$devices->data('name','newname');
+$devices->where('id','=','42');
+$devices->save();
+```
+
+Deleting device record:
+```
+$devices->where('id','=','42');
+$devices->delete();
+```
+
+....and many many other things
 
 ## Please check out some usage guidelines
 
