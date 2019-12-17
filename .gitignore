@@ -1,3 +1,4 @@
 !.gitignore
 !.htaccess
+!exports/.htaccess
 exports/
