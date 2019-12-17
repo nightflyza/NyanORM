@@ -1,7 +1,7 @@
 # NyanORM
 Most kawaii and simplest database abstraction layer ever
 
-#Features
+# Features
   
   * It does not impose any restrictions on the naming of database tables
   * It does not dictate any conditions for the fields and content of these tables
