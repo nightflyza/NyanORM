@@ -62,3 +62,5 @@ $devices->delete();
   * [Documentation at Ubilling wiki](http://wiki.ubilling.net.ua/doku.php?id=nyanorm)
 
 ![NYA!](http://piclod.com/i/1576549155/nyanorm.gif)
+
+[![Build Status](https://travis-ci.org/nightflyza/NyanORM.svg?branch=master)](https://travis-ci.org/nightflyza/NyanORM)
