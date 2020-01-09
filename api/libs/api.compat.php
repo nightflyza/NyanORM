@@ -69,3 +69,23 @@ if (!function_exists('rcms_redirect')) {
     }
 
 }
+
+
+if (!function_exists('ispos')) {
+
+    /**
+     * Checks for substring in string
+     * 
+     * @param string $string
+     * @param string $search
+     * @return bool
+     */
+    function ispos($string, $search) {
+        if (strpos($string, $search) === false) {
+            return(false);
+        } else {
+            return(true);
+        }
+    }
+
+}
