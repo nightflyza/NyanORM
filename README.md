@@ -61,6 +61,12 @@ $devices->delete();
 
   * [Documentation at Ubilling wiki](http://wiki.ubilling.net.ua/doku.php?id=nyanorm)
 
+### Contribute
+
+1. Fork the repository on GitHub to start making your changes.
+1. Make code changes to implement the feature or fix the bug.
+1. Send a pull request to get your changes merged and published.
+
 ![NYA!](http://piclod.com/i/1576549155/nyanorm.gif)
 
 [![Build Status](https://travis-ci.org/nightflyza/NyanORM.svg?branch=master)](https://travis-ci.org/nightflyza/NyanORM)
