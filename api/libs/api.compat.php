@@ -89,3 +89,82 @@ if (!function_exists('ispos')) {
     }
 
 }
+
+/**
+ * Advanced php5 scandir analog wit some filters
+ * 
+ * @param string $directory Directory to scan
+ * @param string $exp  Filter expression - like *.ini or *.dat
+ * @param string $type Filter type - all or dir
+ * @param bool $do_not_filter
+ * 
+ * @return array
+ */
+function rcms_scandir($directory, $exp = '', $type = 'all', $do_not_filter = false) {
+    $dir = $ndir = array();
+    if (!empty($exp)) {
+        $exp = '/^' . str_replace('*', '(.*)', str_replace('.', '\\.', $exp)) . '$/';
+    }
+    if (!empty($type) && $type !== 'all') {
+        $func = 'is_' . $type;
+    }
+    if (is_dir($directory)) {
+        $fh = opendir($directory);
+        while (false !== ($filename = readdir($fh))) {
+            if (substr($filename, 0, 1) != '.' || $do_not_filter) {
+                if ((empty($type) || $type == 'all' || $func($directory . '/' . $filename)) && (empty($exp) || preg_match($exp, $filename))) {
+                    $dir[] = $filename;
+                }
+            }
+        }
+        closedir($fh);
+        natsort($dir);
+    }
+    return $dir;
+}
+
+/**
+ * Parses standard INI-file structure and returns this as key=>value array
+ * 
+ * @param string $filename Existing file name
+ * @param bool $blocks Section parsing flag
+ * 
+ * @return array
+ */
+function rcms_parse_ini_file($filename, $blocks = false) {
+    $array1 = file($filename);
+    $section = '';
+    foreach ($array1 as $filedata) {
+        $dataline = trim($filedata);
+        $firstchar = substr($dataline, 0, 1);
+        if ($firstchar != ';' && !empty($dataline)) {
+            if ($blocks && $firstchar == '[' && substr($dataline, -1, 1) == ']') {
+                $section = strtolower(substr($dataline, 1, -1));
+            } else {
+                $delimiter = strpos($dataline, '=');
+                if ($delimiter > 0) {
+                    preg_match("/^[\s]*(.*?)[\s]*[=][\s]*(\"|)(.*?)(\"|)[\s]*$/", $dataline, $matches);
+                    $key = $matches[1];
+                    $value = $matches[3];
+
+                    if ($blocks) {
+                        if (!empty($section)) {
+                            $array2[$section][$key] = stripcslashes($value);
+                        }
+                    } else {
+                        $array2[$key] = stripcslashes($value);
+                    }
+                } else {
+                    if ($blocks) {
+                        if (!empty($section)) {
+                            $array2[$section][trim($dataline)] = '';
+                        }
+                    } else {
+                        $array2[trim($dataline)] = '';
+                    }
+                }
+            }
+        }
+    }
+    return (!empty($array2)) ? $array2 : false;
+}
